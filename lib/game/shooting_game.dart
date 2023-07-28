@@ -1,3 +1,4 @@
+import 'package:easy_flutter_game/game/components/enemy.dart';
 import 'package:easy_flutter_game/game/components/ground.dart';
 import 'package:easy_flutter_game/game/components/player.dart';
 import 'package:flame/game.dart';
@@ -9,6 +10,7 @@ class ShootingGame extends FlameGame with PanDetector, HasCollisionDetection, Ke
 
   late Player player;
   late Ground ground;
+  late Enemy enemy;
 
   @override
   Future<void> onLoad() async {
@@ -16,11 +18,15 @@ class ShootingGame extends FlameGame with PanDetector, HasCollisionDetection, Ke
 
     player = Player();
     ground = Ground(size.x);
+    enemy = Enemy();
 
     add(ground);
     add(player);
+    add(enemy);
 
-    player.y = size.y - Ground.groundHeight - Player.playerSize;
+    player.y = Ground.groundHeight - Player.playerSize;
+    enemy.y = Ground.groundHeight - Enemy.enemyHeight;
+    enemy.x = size.x / 2 - Enemy.enemyWidth / 2;
   }
 
   @override

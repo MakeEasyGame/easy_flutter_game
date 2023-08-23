@@ -33,7 +33,7 @@ class _GameViewState extends State<GameView> {
               shootingGame.player.moveRight();
             }
             if (event.logicalKey == LogicalKeyboardKey.space) {
-              // shootingGame.player.shoot();
+              shootingGame.shoot();
             }
           }
         },

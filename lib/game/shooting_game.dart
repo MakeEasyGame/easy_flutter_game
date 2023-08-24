@@ -42,7 +42,7 @@ class ShootingGame extends FlameGame
     }
     // 총알 이동
     bullets.forEach((bullet) {
-      if (player.facingRight) {
+      if (bullet.isRight) {
         bullet.x += bulletSpeed;
       } else {
         bullet.x -= bulletSpeed;
@@ -60,8 +60,8 @@ class ShootingGame extends FlameGame
   }
 
   void shoot() {
-    final bullet =
-        Bullet(player.x + player.width, player.y + player.height / 2);
+    final bullet = Bullet(player.x + player.width, player.y + player.height / 2,
+        player.facingRight);
     bullets.add(bullet);
     add(bullet);
   }

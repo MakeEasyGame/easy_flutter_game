@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class Bullet extends CircleComponent with HasGameRef, CollisionCallbacks {
   static const double bulletSize = 10;
+  late final bool isRight;
 
-
-  Bullet(double x, double y) {
+  Bullet(double x, double y, this.isRight) {
     this.x = x - bulletSize / 2;
     this.y = y - bulletSize;
     paint = Paint()

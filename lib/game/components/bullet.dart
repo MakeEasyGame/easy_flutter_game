@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 class Bullet extends CircleComponent with HasGameRef, CollisionCallbacks {
   static const double bulletSize = 10;
   late final bool isRight;
+  late void Function() callback;
 
-  Bullet(double x, double y, this.isRight) {
+  Bullet(double x, double y, this.isRight, this.callback) {
     this.x = x - bulletSize / 2;
     this.y = y - bulletSize;
     paint = Paint()
@@ -19,14 +20,20 @@ class Bullet extends CircleComponent with HasGameRef, CollisionCallbacks {
     super.onMount();
     width = bulletSize;
     height = bulletSize;
+    final shape = CircleHitbox.relative(
+      0.8,
+      parentSize: size,
+      position: size / 2,
+      anchor: Anchor.center,
+    );
+    add(shape);
   }
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
     if (other is Enemy) {
-      gameRef.remove(other);
-      gameRef.remove(this);
+      callback();
     }
   }
 

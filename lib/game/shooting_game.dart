@@ -57,11 +57,17 @@ class ShootingGame extends FlameGame
       }
       return false;
     });
+
+    if (enemy.life == 0) {}
   }
 
   void shoot() {
-    final bullet = Bullet(player.x + player.width, player.y + player.height / 2,
-        player.facingRight);
+    final bullet = Bullet(
+        player.facingRight ? player.x + player.width : player.x - player.width,
+        player.y + player.height / 2,
+        player.facingRight, () {
+
+    });
     bullets.add(bullet);
     add(bullet);
   }
